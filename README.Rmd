@@ -25,7 +25,11 @@ remotes::install_github('jbryer/ggBoxplot2d')
 
 Basic example using the `mtcars` dataset.
 
-```{r}
+```{r boxplot2d_mtcars}
 library(ggBoxplot2d)
-
+data(mtcars)
+p <- ggplot(mtcars, aes(x = wt, y = mpg, group = factor(cyl), color = factor(cyl), fill = factor(cyl))) +
+	geom_boxplot2d() +
+	theme(legend.position = 'bottom')
+p
 ```
