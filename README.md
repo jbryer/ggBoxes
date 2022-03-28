@@ -1,8 +1,6 @@
 ggBoxplot2d: Two Dimensional Box and Whisker Plots
 ================
 
-# ggBoxplot2d
-
 Two Dimensional Box and Whisker Plots
 
 To install the development version of the package, use the `remotes`
