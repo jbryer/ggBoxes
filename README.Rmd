@@ -1,0 +1,31 @@
+---
+title: "ggBoxplot2d: Two Dimensional Box and Whisker Plots"
+output:
+  github_document:
+    html_preview: false
+editor_options:
+  chunk_output_type: console
+---
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-"
+)
+```
+
+Two Dimensional Box and Whisker Plots
+
+To install the development version of the package, use the `remotes` package:
+
+```{r, eval=FALSE}
+remotes::install_github('jbryer/ggBoxplot2d')
+```
+
+Basic example using the `mtcars` dataset.
+
+```{r}
+library(ggBoxplot2d)
+
+```
