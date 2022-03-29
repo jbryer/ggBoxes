@@ -1,10 +1,3 @@
-#' Internal function copied from ggplot2 (not exported there).
-#' @importFrom grid grobName
-ggname <- function (prefix, grob) {
-	grob$name <- grobName(grob, prefix)
-	grob
-}
-
 #' Create a ggplot2 geom for two dimensional box and whisker plots.
 #'
 #' @rdname boxplot2d
@@ -29,7 +22,7 @@ GeomBoxplot2d <- ggproto(
 		first_row <- coords[1,,drop=FALSE] # Use the first row for other aethestics
 
 		# Outer box (1.5 times the IQR)
-		outer_box <- data[,c('x', 'y')] %>%
+		outer_box <- data[,c('x', 'y')] |>
 			summarize(xmin = max(quantile(x, .25) - 1.5 * IQR(x), min(x)),
 					  ymin = max(quantile(y, .25) - 1.5 * IQR(y), min(y)),
 					  xmax = min(quantile(x, .75) + 1.5 * IQR(x), max(x)),
@@ -54,7 +47,7 @@ GeomBoxplot2d <- ggproto(
 		)
 
 		# Inner box (IQR)
-		inner_box <- data[,c('x', 'y')] %>%
+		inner_box <- data[,c('x', 'y')] |>
 			dplyr::summarize(xmin = quantile(x, .25),
 					  ymin = quantile(y, .25),
 					  xmax = quantile(x, .75),
@@ -109,7 +102,7 @@ GeomBoxplot2d <- ggproto(
 
 		# Outliers
 		tree <- NULL
-		outliers <- data %>% filter(x > max(outer_box$x) |
+		outliers <- data |> dplyr::filter(x > max(outer_box$x) |
 									x < min(outer_box$x) |
 									y > max(outer_box$y) |
 									y < min(outer_box$y))
@@ -130,9 +123,9 @@ GeomBoxplot2d <- ggproto(
 					pch = first_row$shape
 				)
 			)
-			tree <- grobTree(inner_grob, outer_grob, median_x_grob, median_y_grob, points_grob)
+			tree <- grid::grobTree(inner_grob, outer_grob, median_x_grob, median_y_grob, points_grob)
 		} else {
-			tree <- grobTree(inner_grob, outer_grob, median_x_grob, median_y_grob)
+			tree <- grid::grobTree(inner_grob, outer_grob, median_x_grob, median_y_grob)
 		}
 
 		ggname("geom_boxplot2d", tree)

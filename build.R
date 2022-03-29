@@ -3,6 +3,9 @@ library(devtools)
 usethis::use_tidy_description()
 document()
 install(build_vignettes = TRUE)
+test()
+check()
+
 
 
 ##### Package setup stuff
@@ -11,12 +14,13 @@ usethis::use_package('vdiffr', type = 'Suggests')
 usethis::use_gpl3_license()
 usethis::use_testthat()
 usethis::use_test('geom_boxplot2d')
+usethis::use_vignette('boxplot2d')
 
 #####
-library(ggExtra)
-
 library(ggBoxplot2d)
+library(ggExtra)
 library(dplyr)
+
 data(mtcars)
 p <- ggplot(mtcars, aes(x = wt, y = mpg, group = factor(cyl), color = factor(cyl), fill = factor(cyl))) +
 	geom_boxplot2d() +
@@ -27,6 +31,18 @@ ggMarginal(p + geom_point(alpha = 0),
 		   type = 'density',
 		   groupColour = TRUE,
 		   groupFill = TRUE)
+
+ggplot(mtcars, aes(x = wt, y = mpg, group = factor(cyl), color = factor(cyl), fill = factor(cyl))) +
+	geom_error2d()
+
+p <- ggplot(mtcars, aes(x = wt, y = mpg, group = factor(cyl), color = factor(cyl), fill = factor(cyl))) +
+	geom_error2d(conf_levels = c(0.90, 0.95, 0.99)) +
+	geom_point() +
+	theme(legend.position = 'bottom')
+p
+
+ggMarginal(p, type = 'density', groupColour = TRUE, groupFill = TRUE)
+
 
 gd <- mtcars |>
 	group_by(cyl) |>

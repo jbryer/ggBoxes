@@ -33,3 +33,14 @@ p <- ggplot(mtcars, aes(x = wt, y = mpg, group = factor(cyl), color = factor(cyl
 	theme(legend.position = 'bottom')
 p
 ```
+
+## Example with Palmer's Penguins
+
+```{r}
+library(palmerpenguins)
+data(penguins, package = 'palmerpenguins')
+
+ggplot(penguins, aes(x = flipper_length_mm, y = bill_length_mm, color = species, fill = species)) +
+	geom_boxplot2d()
+```
+

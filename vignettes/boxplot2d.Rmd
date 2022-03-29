@@ -1,0 +1,39 @@
+---
+title: "Two Dimensional Box and Whisker Plots"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{boxplot2d}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(ggBoxplot2d)
+```
+
+
+```{r mtcars1}
+data(mtcars)
+p <- ggplot(mtcars, aes(x = wt, y = mpg, group = factor(cyl), color = factor(cyl), fill = factor(cyl))) +
+	geom_boxplot2d() +
+	theme(legend.position = 'bottom')
+p
+```
+
+
+# References
+
+Persaud, N., & Yates, B. T. (complete 9-chapter book manuscript submitted for hopefully final review 2022 March 25).  Cost-inclusive evaluation: Planning it, doing it, using it. Book manuscript already under contract. New York, NY: Guilford Press.
+
+Tukey, John W. (1977). *Exploratory Data Analysis.* Addison-Wesley.
+
+Wickham. H. (2016). *ggplot2: Elegant Graphics for Data Analysis.* Springer-Verlag
+
+
