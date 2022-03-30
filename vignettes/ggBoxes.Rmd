@@ -1,0 +1,66 @@
+---
+title: "Two Dimensional Box and Error Plots"
+author: "Jason Bryer"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{boxplot2d}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(ggBoxplot2d)
+```
+
+## Two Dimensional Box and Whisker Plots
+
+Basic example using the `mtcars` dataset.
+
+```{r boxplot2d_mtcars}
+library(ggBoxplot2d)
+data(mtcars)
+p <- ggplot(mtcars, aes(x = wt, y = mpg, group = factor(cyl), 
+						color = factor(cyl), fill = factor(cyl))) +
+	geom_boxplot2d() +
+	theme(legend.position = 'bottom')
+p
+```
+
+We can add marginal density plots using the `ggExtra` package. We have to add the raw data points for the marginal plots to display. By setting `alpha = 0` the points are present for the density plots but are hidden from the plot.
+
+```{r boxplto2d_ggextra}
+ggExtra::ggMarginal(p + geom_point(alpha = 0), 
+					type = 'density', 
+					groupColour = TRUE, 
+					groupFill = TRUE)
+```
+
+
+## Example with Palmer's Penguins
+
+```{r}
+library(palmerpenguins)
+data(penguins, package = 'palmerpenguins')
+
+ggplot(penguins, aes(x = flipper_length_mm, y = bill_length_mm, color = species, fill = species)) +
+	geom_boxplot2d()
+```
+
+
+
+# References
+
+Persaud, N., & Yates, B. T. (complete 9-chapter book manuscript submitted for hopefully final review 2022 March 25).  Cost-inclusive evaluation: Planning it, doing it, using it. Book manuscript already under contract. New York, NY: Guilford Press.
+
+Tukey, John W. (1977). *Exploratory Data Analysis.* Addison-Wesley.
+
+Wickham. H. (2016). *ggplot2: Elegant Graphics for Data Analysis.* Springer-Verlag
+
+

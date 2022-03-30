@@ -1,5 +1,5 @@
-Package: ggBoxplot2d
-Title: Two Dimensional Box and Whisker Plots
+Package: ggBoxes
+Title: Two Dimensional Box and Error Plots
 Version: 0.9.0
 Authors@R: 
     person("Jason", "Bryer", , "jason@bryer.org", role = c("aut", "cre"),
@@ -11,8 +11,8 @@ Description: A ggplot2 layer to create two-dimensional box and whisker
     observation, whichever is smaller. Any points lying outside that range
     are plotted as points.
 License: GPL (>= 3)
-URL: https://github.com/jbryer/ggBoxplot2d
-BugReports: https://github.com/jbryer/ggBoxplot2d/issues
+URL: https://github.com/jbryer/ggBoxes
+BugReports: https://github.com/jbryer/ggBoxes/issues
 Depends:
     ggplot2
 Imports: 

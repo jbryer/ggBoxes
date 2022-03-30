@@ -7,8 +7,8 @@
 #' @import dplyr
 #' @importFrom ggplot2 aes ggproto ggproto_parent GeomPolygon Geom draw_key_polygon
 #' @importFrom grid nullGrob polygonGrob gpar segmentsGrob pointsGrob grobTree
-GeomError2d <- ggproto(
-	"GeomError2d",
+GeomErrorBox2d <- ggproto(
+	"GeomErrorBox2d",
 	ggplot2::Geom,
 	extra_params = c("conf_levels", "na.rm"),
 	setup_data = function(self, data, params) {
@@ -100,7 +100,7 @@ GeomError2d <- ggproto(
 
 		tree <- do.call(grid::grobTree, grobs)
 
-		ggname("geom_error2d", tree)
+		ggname("geom_errorbox2d", tree)
 	},
 	draw_key = ggplot2::draw_key_polygon,
 	required_aes = c("x", "y"),
@@ -116,7 +116,7 @@ GeomError2d <- ggproto(
 	)
 )
 
-#' A two-dimensional error plot.
+#' A two-dimensional error box plot.
 #'
 #'
 #' @inheritParams ggplot2::layer
@@ -125,8 +125,8 @@ GeomError2d <- ggproto(
 #' @importFrom ggplot2 layer
 #' @examples
 #' data(mtcars)
-#' ggplot(mtcars, aes(x = wt, y = mpg, group = factor(cyl))) + geom_error2d()
-geom_error2d <-function(mapping = NULL,
+#' ggplot(mtcars, aes(x = wt, y = mpg, group = factor(cyl))) + geom_errorbox2d()
+geom_errorbox2d <-function(mapping = NULL,
 						data = NULL,
 						stat = "identity",
 						position = "identity",
@@ -136,17 +136,18 @@ geom_error2d <-function(mapping = NULL,
 						conf_levels = c(0.9, 0.95, 0.99),
 						alpha = 1.0,
 						...) {
-	ggplot2::layer(geom = GeomError2d,
-		  mapping = mapping,
-		  data = data,
-		  stat = stat,
-		  position = position,
-		  show.legend = show.legend,
-		  inherit.aes = inherit.aes,
-		  params = list(na.rm = na.rm,
-		  			    conf_levels = conf_levels,
-		  			    alpha = alpha,
-		  			    ...)
+	ggplot2::layer(
+		geom = GeomErrorBox2d,
+		 mapping = mapping,
+		 data = data,
+		 stat = stat,
+		 position = position,
+		 show.legend = show.legend,
+		 inherit.aes = inherit.aes,
+		 params = list(na.rm = na.rm,
+		 			   conf_levels = conf_levels,
+		 			   alpha = alpha,
+		 			   ...)
 	)
 }
 
