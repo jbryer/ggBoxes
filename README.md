@@ -13,8 +13,7 @@ remotes::install_github('jbryer/ggBoxes')
 Basic example using the `mtcars` dataset.
 
 ``` r
-library(ggBoxplot2d)
-#> Loading required package: ggplot2
+library(ggBoxes)
 data(mtcars)
 ggplot(mtcars, aes(x = wt, y = mpg, group = factor(cyl),
                    color = factor(cyl), fill = factor(cyl))) +
@@ -32,7 +31,8 @@ p <- ggplot(mtcars, aes(x = wt, y = mpg, group = factor(cyl),
                    color = factor(cyl), fill = factor(cyl))) +
     geom_errorbox2d() +
     theme(legend.position = 'bottom') +
-    ggtitle('Two Dimensional Error Plot')
+    ggtitle('Two Dimensional Confidence Interval Plot', 
+            subtitle = 'p = 0.10, p = 0.05, and p = 0.01')
 ggExtra::ggMarginal(p + geom_point(alpha = 0), 
                     type = 'density', 
                     groupColour = TRUE, 

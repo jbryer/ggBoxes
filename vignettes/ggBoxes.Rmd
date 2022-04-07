@@ -15,16 +15,12 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(ggBoxplot2d)
-```
-
 ## Two Dimensional Box and Whisker Plots
 
 Basic example using the `mtcars` dataset.
 
 ```{r boxplot2d_mtcars}
-library(ggBoxplot2d)
+library(ggBoxes)
 data(mtcars)
 p <- ggplot(mtcars, aes(x = wt, y = mpg, group = factor(cyl), 
 						color = factor(cyl), fill = factor(cyl))) +
