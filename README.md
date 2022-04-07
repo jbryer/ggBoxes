@@ -1,6 +1,8 @@
 ggBoxes: Two Dimensional Box and Error Plots
 ================
 
+<img src="man/figures/ggBoxes.png" align="right" width="120" />
+
 To install the development version of the package, use the `remotes`
 package:
 
